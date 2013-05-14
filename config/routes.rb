@@ -1,4 +1,13 @@
 Jugular::Application.routes.draw do
+  scope "/api" do
+    get "/pics(.:format)" => "pics#index"
+    get "/pics/:id(.:format)" => "pics#show"
+  end
+end
+
+
+  #get "pics/index"
+  #get "pics/show"
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
@@ -46,4 +55,4 @@ Jugular::Application.routes.draw do
   #     # (app/controllers/admin/products_controller.rb)
   #     resources :products
   #   end
-end
+  #end

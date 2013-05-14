@@ -1,11 +1,11 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
 
 one:
-  title: MyString
+  title: Itty Bitty
   score: 1
   published_at: 2013-05-14 18:39:39
 
 two:
-  title: MyString
-  score: 1
+  title: Big-n-Bouncy
+  score: 10
   published_at: 2013-05-14 18:39:39
