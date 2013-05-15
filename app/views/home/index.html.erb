@@ -1,12 +1,18 @@
-<%= stylesheet_link_tag    "application", media: "all" %>
 <%= javascript_include_tag "application" %>
 
 
 <html ng-app="Jugular">
 
 <body>
+<h1>The Pics</h1>
 <div ng-controller="PicsController">
-  <h1>Message: {{message}}</h1>
+  <div id="pic-list-container" >
+    <ul>
+      <li ng-repeat="pic in pics">
+        <h3>{{pic.title}} <small>({{pic.score}})</small></h3>
+      </li>
+    </ul>
+  </div>
 </div>
 </body>
 
