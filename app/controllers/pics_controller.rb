@@ -2,7 +2,7 @@ class PicsController < ApplicationController
   # GET /screencasts
   # GET /screencasts.json
   def index
-#    render json: Screencast.all
+    render json: Pic.all
   end
 
   # GET /screencasts/:id

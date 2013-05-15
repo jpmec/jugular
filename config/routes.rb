@@ -1,9 +1,12 @@
 Jugular::Application.routes.draw do
-  get "home/index"
+
+  root :to => 'home#index'
+
   scope "/api" do
     get "/pics(.:format)" => "pics#index"
     get "/pics/:id(.:format)" => "pics#show"
   end
+
 end
 
 
