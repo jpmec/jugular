@@ -8,7 +8,7 @@ class PicsController < ApplicationController
   # GET /screencasts/:id
   # GET /screencasts/:id.json
   def show
-#    render json: Screencast.find(params[:id])
+    render json: Pic.find(params[:id])
   end
 
 end

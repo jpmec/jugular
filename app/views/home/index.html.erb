@@ -1,5 +1,13 @@
-<header>
-  Jugular
-</header>
+<%= stylesheet_link_tag    "application", media: "all" %>
+<%= javascript_include_tag "application" %>
 
-Hello World
+
+<html ng-app="Jugular">
+
+<body>
+<div ng-controller="PicsController">
+  <h1>Message: {{message}}</h1>
+</div>
+</body>
+
+</html>
