@@ -6,13 +6,26 @@
 <body>
 <h1>The Pics</h1>
 <div ng-controller="PicsController">
+
+  Search: <input ng-model="searchText">
+
   <div id="pic-list-container" >
     <ul>
-      <li ng-repeat="pic in pics">
-        <h3>{{pic.title}} {{pic.score}}</h3>
+      <li ng-repeat="pic in pics | filter:searchText | orderBy:'score':true">
+        <h3 ng-click="selectPic(pic)" ng-class="isSelected(pic)">{{pic.title}} {{pic.score}}</h3>
       </li>
     </ul>
   </div>
+
+  <div id="pic-view-container" ng-show="selectedPic">
+    <h2>{{selectedPic.title}}</h2>
+    <p>{{selectedPic.score}}</p>
+
+    <input type='submit', name='submit', value='Submit', ng-click='save()' />
+
+  </div>
+
+
 </div>
 </body>
 
