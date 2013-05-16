@@ -4,7 +4,7 @@
   loadPics = ->
     $http.get("/api/0/pics.json").success((data, status, headers, config) ->
       angular.forEach data, (value) ->
-        $scope.pics.push value.pic
+        $scope.pics.push value
     )
 
   loadPics()
