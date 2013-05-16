@@ -21,10 +21,40 @@
     <h2>{{selectedPic.title}}</h2>
     <p>{{selectedPic.score}}</p>
 
-    <input type='submit', name='submit', value='Submit', ng-click='save()' />
+    <div>
+      <p>Title: <input ng-model="title"></p>
+      <p>Score: <input ng-model="score"></p>
+
+      <input type='submit', name='submit', value='Submit', ng-click='selectedPic.$save' />
+    </div>
 
   </div>
 
+  <form name="picEditForm" ng-controller="PicsController">
+    Title: <input type="text" name="title" ng-model="title" ng-minlength="3" ng-maxlength="64">
+    <span class="error" ng-show="picEditForm.title.$error.required">Required!</span><br>
+    <tt>Title = {{title}}</tt><br>
+    <span class="error" ng-show="myForm.lastName.$error.minlength">Too short!</span>
+    <span class="error" ng-show="myForm.lastName.$error.maxlength">Too long!</span><br>
+
+    <tt>picEditForm.title.$valid = {{picEditForm.title.$valid}}</tt><br>
+    <tt>picEditForm.title.$error = {{picEditForm.title.$error}}</tt><br>
+  </form>
+
+  <div id="pic-versus-view-container">
+    <table>
+      <tr>
+        <td>
+          <div>Pic 1</div>
+          <div> <input type='submit', name='select_1', value='Select', ng-click='' /></div>
+        </td>
+        <td>
+          <div>Pic 2</div>
+          <div> <input type='submit', name='select_2', value='Select', ng-click='' /></div>
+        </td>
+      </tr>
+    </table>
+  </div>
 
 </div>
 </body>
