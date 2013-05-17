@@ -1,0 +1,22 @@
+#main {
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center;
+}
+
+#pic-versus-view-container{
+}
+
+#pic-list-container {
+}
+
+#find-input-container {
+}
+
+#pic-view-container {
+  display:none;
+}
+
+#pic-edit-container {
+  display: none;
+}

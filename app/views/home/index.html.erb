@@ -1,20 +1,50 @@
+<%= stylesheet_link_tag "bootstrap", :media => "all" %>
+<%= stylesheet_link_tag "application", :media => "all" %>
 <%= javascript_include_tag "application" %>
 
 
 <html ng-app="Jugular">
 
 <body>
-<h1>The Pics</h1>
+
+<div class="navbar navbar-fixed-bottom">
+  <div class="navbar-inner">
+    <div class="container-fluid">
+      <div class="brand">Jugular</div>
+      <div class="btn-group pull-right">Add</div>
+    </div>
+  </div>
+</div>
+
+<div id="main">
+
+<h1>Jugular</h1>
 <div ng-controller="PicsController">
 
-  Search: <input ng-model="searchText">
+  <div id="pic-versus-view-container">
+    <h2>{{versusPic1.title}} Vs. {{versusPic2.title}}</h2>
+    <table>
+      <tr>
+        <td>
+          <div>Pic 1</div>
+          <div> <input type='submit', name='select_1', value='Select', ng-click='' /></div>
+        </td>
+        <td>
+          <div>Pic 2</div>
+          <div> <input type='submit', name='select_2', value='Select', ng-click='' /></div>
+        </td>
+      </tr>
+    </table>
+  </div>
 
-  <div id="pic-list-container" >
-    <ul>
-      <li ng-repeat="pic in pics | filter:searchText | orderBy:'score':true">
-        <h3 ng-click="selectPic(pic)" ng-class="isSelected(pic)">{{pic.title}} {{pic.score}}</h3>
+
+  <div id="pic-best-view-container">
+    <h2>Best Jugs</h2>
+    <ol>
+      <li ng-repeat="pic in pics | filter:10">
+        <p>{{pic.title}}</p></td>
       </li>
-    </ul>
+    </ol>
   </div>
 
   <div id="pic-view-container" ng-show="selectedPic">
@@ -30,33 +60,38 @@
 
   </div>
 
-  <form name="picEditForm" ng-controller="PicsController">
-    Title: <input type="text" name="title" ng-model="title" ng-minlength="3" ng-maxlength="64">
-    <span class="error" ng-show="picEditForm.title.$error.required">Required!</span><br>
-    <tt>Title = {{title}}</tt><br>
-    <span class="error" ng-show="myForm.lastName.$error.minlength">Too short!</span>
-    <span class="error" ng-show="myForm.lastName.$error.maxlength">Too long!</span><br>
+  <div id="pic-edit-container">
+    <form name="picEditForm">
+      Title: <input type="text" name="title" ng-model="selectedPic.title" ng-minlength="3" ng-maxlength="64">
+      <span class="error" ng-show="picEditForm.title.$error.required">Required!</span><br>
+      <tt>Title = {{title}}</tt><br>
+      <span class="error" ng-show="myForm.lastName.$error.minlength">Too short!</span>
+      <span class="error" ng-show="myForm.lastName.$error.maxlength">Too long!</span><br>
 
-    <tt>picEditForm.title.$valid = {{picEditForm.title.$valid}}</tt><br>
-    <tt>picEditForm.title.$error = {{picEditForm.title.$error}}</tt><br>
-  </form>
+      <tt>picEditForm.title.$valid = {{picEditForm.title.$valid}}</tt><br>
+      <tt>picEditForm.title.$error = {{picEditForm.title.$error}}</tt><br>
+    </form>
+  </div>
 
-  <div id="pic-versus-view-container">
+
+  <div id="pic-list-container">
+    <div id="find-input-container">
+      Find <input ng-model="searchText">
+    </div>
     <table>
-      <tr>
-        <td>
-          <div>Pic 1</div>
-          <div> <input type='submit', name='select_1', value='Select', ng-click='' /></div>
-        </td>
-        <td>
-          <div>Pic 2</div>
-          <div> <input type='submit', name='select_2', value='Select', ng-click='' /></div>
-        </td>
+      <tr ng-repeat="pic in pics | filter:searchText | orderBy:listOrder:true" ng-class="isSelected(pic)">
+        <td><p ng-click="selectPic(pic)" >{{pic.title}}</p></td>
+        <td>{{pic.score}}</td>
       </tr>
     </table>
   </div>
 
+
+  <div class="navbar-fixed-bottom">
+  </div>
+
+
 </div>
-</body>
+</div></body>
 
 </html>

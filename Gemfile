@@ -5,6 +5,10 @@ gem 'rails', '4.0.0.beta1'
 gem 'rails-api'
 gem 'sqlite3'
 gem 'coffee-script'
+gem 'sequel'
+gem 'carrierwave'
+gem 'carrierwave-sequel'
+gem 'jquery-rails'
 
 # To use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'
@@ -26,4 +30,9 @@ group :assets do
   gem 'sass-rails',   '~> 4.0.0.beta1'
   gem 'coffee-rails', '~> 4.0.0.beta1'
   gem 'uglifier', '>= 1.0.3'
+end
+
+group :test do
+  gem 'minitest'
+  gem 'minitest-rails'
 end

@@ -7,8 +7,8 @@
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
 
-Pic.create(title: "Itty Bitty", score: 7, published_at: "2013-05-14 18:39:37")
+Pic.create(title: "Itty Bitty", score: 7, tags: "athletic, perky", published_at: "2013-05-14 18:39:37")
 
-Pic.create(title: "Saggy", score: 3, published_at: "2013-05-14 18:39:38")
+Pic.create(title: "Saggy", score: 3, tags: "gmilf", published_at: "2013-05-14 18:39:38")
 
-Pic.create(title: "Nice", score: 10, published_at: "2013-05-14 18:39:39")
+Pic.create(title: "Nice", tags: "perfect", score: 10, published_at: "2013-05-14 18:39:39")
