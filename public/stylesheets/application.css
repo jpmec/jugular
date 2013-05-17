@@ -4,7 +4,11 @@
   text-align: center;
 }
 
-#pic-versus-view-container{
+#pic-best-container{
+}
+
+#pic-versus-container{
+  display: none;
 }
 
 #pic-list-container {
@@ -14,7 +18,8 @@
 }
 
 #pic-view-container {
-  display:none;
+  float: left;
+  display: none
 }
 
 #pic-edit-container {

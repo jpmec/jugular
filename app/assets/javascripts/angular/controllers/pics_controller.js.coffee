@@ -9,11 +9,19 @@
   $scope.listOrder = 'score'
 
   $scope.selectPic = (pic) ->
+    $('#pic-upload-container').slideUp()
+    $('#pic-versus-container').slideUp()
+    $('#pic-best-container').slideUp()
+    $('#pic-edit-container').slideDown()
     $scope.selectedPic = pic
     if (!$scope.versusPic1)
       $scope.versusPic1 = pic
+      $('#pic-view-container').slideDown()
     else if (!$scope.versusPic2)
       $scope.versusPic2 = pic
+      $('#pic-view-container').slideUp()
+      $('#pic-edit-container').slideUp()
+      $('#pic-versus-container').slideDown()
     else
       $scope.versusPic1 = pic
       $scope.versusPic2 = null
