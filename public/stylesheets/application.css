@@ -5,6 +5,7 @@
 }
 
 #pic-best-container{
+  display: none
 }
 
 #pic-versus-container{
@@ -12,6 +13,13 @@
 }
 
 #pic-list-container {
+  margin-left:auto;
+  margin-right:auto;
+  display: none
+}
+
+#find-input-container {
+  padding: 1em;
 }
 
 #find-input-container {
@@ -22,6 +30,25 @@
   display: none
 }
 
+#pic-upload-container {
+  display: none;
+}
+
+#pic-view-img {
+  margin: 1em;
+  border-style:solid;
+  border-width:2;
+}
+
+.pic-versus-img {
+  margin: 1em;
+  border-style:solid;
+  border-width:2;
+  float:left;
+}
+
+
 #pic-edit-container {
+  text-align:left;
   display: none;
 }

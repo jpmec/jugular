@@ -1,4 +1,6 @@
 class PicsController < ApplicationController
+  #include RestfulJson::DefaultController
+
   # GET /screencasts
   # GET /screencasts.json
   def index

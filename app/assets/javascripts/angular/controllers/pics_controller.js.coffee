@@ -6,22 +6,64 @@
   $scope.versusPic1 = null
   $scope.versusPic2 = null
 
-  $scope.listOrder = 'score'
+  $scope.uploadPicTitle = ""
+  $scope.uploadPicScore = ""
 
-  $scope.selectPic = (pic) ->
+  $scope.listOrder = 'score'
+  $scope.listDescending = 'true'
+
+  $scope.hideSections = () ->
+    $('#pic-about-container').slideUp()
     $('#pic-upload-container').slideUp()
     $('#pic-versus-container').slideUp()
     $('#pic-best-container').slideUp()
+    $('#pic-list-container').slideUp()
+    $('#pic-view-container').slideUp()
+    $('#pic-edit-container').slideUp()
+
+  $scope.showAbout = () ->
+    $scope.hideSections()
+    $('#pic-about-container').slideDown()
+
+  $scope.showFindPic = () ->
+    $scope.hideSections()
+    $('#pic-list-container').slideDown()
+
+  $scope.showVersus = () ->
+    $scope.versusPic1 = null
+    $scope.versusPic2 = null
+    $scope.hideSections()
+    $('#pic-versus-container').slideDown()
+
+  $scope.versusPic1AndVersusPic2NotNull = () ->
+    return ($scope.versusPic1 != null) && ($scope.versusPic2 != null)
+
+  $scope.showUpload = () ->
+    $scope.hideSections()
+    $('#pic-upload-container').slideDown()
+
+  $scope.showBest = () ->
+    $scope.hideSections()
+    $('#pic-best-container').slideDown()
+
+  $scope.showView = () ->
+    $scope.hideSections()
+    $('#pic-view-container').slideDown()
+
+  $scope.showEdit = () ->
+    $scope.hideSections()
+    $('#pic-view-container').slideDown()
     $('#pic-edit-container').slideDown()
+
+  $scope.selectPic = (pic) ->
     $scope.selectedPic = pic
+    $scope.showEdit()
+
+  $scope.selectVersusPic = (pic) ->
     if (!$scope.versusPic1)
       $scope.versusPic1 = pic
-      $('#pic-view-container').slideDown()
-    else if (!$scope.versusPic2)
+    else if (!$scope.versusPic2 && ($scope.versusPic1 != pic))
       $scope.versusPic2 = pic
-      $('#pic-view-container').slideUp()
-      $('#pic-edit-container').slideUp()
-      $('#pic-versus-container').slideDown()
     else
       $scope.versusPic1 = pic
       $scope.versusPic2 = null
@@ -31,6 +73,24 @@
 
   $scope.isSelected = (pic) ->
     'active' if $scope.selectedPic == pic
+
+  $scope.save = (pic) ->
+    alert('save')
+
+  $scope.cancel = (pic) ->
+    alert('cancel')
+
+  $scope.sortByTitle = () ->
+    if ($scope.listOrder == 'title')
+      $scope.listDescending = !$scope.listDescending
+    else
+      $scope.listOrder = 'title'
+
+  $scope.sortByScore = () ->
+    if ($scope.listOrder == 'score')
+      $scope.listDescending = !$scope.listDescending
+    else
+      $scope.listOrder = 'score'
 
   loadPics = ->
     $http.get("/api/0/pics.json").success((data, status, headers, config) ->

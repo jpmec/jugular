@@ -7,82 +7,128 @@
 
 <body>
 
-  <div class="navbar navbar-fixed-bottom">
+  <div class="navbar navbar-fixed-bottom" ng-controller="PicsController">
     <div class="navbar-inner">
       <div class="container-fluid">
-        <div class="brand">Jugular</div>
+        <ul class="nav">
+          <li class="active">
+            <a class="brand" href="#">Jugular</a>
+          </li>
+          <li><a ng-click="showAbout()">About</a></li>
+          <li><a ng-click="showUpload()">Upload</a></li>
+          <li><a ng-click="showVersus()">Versus</a></li>
+          <li><a ng-click="showFindPic()">Find</a></li>
+        </ul>
       </div>
     </div>
   </div>
 
-  <div class="container-fluid" id="main">
-    <div ng-controller="PicsController">
+  <div class="container-fluid" id="main" ng-controller="PicsController">
 
-      <div id="pic-versus-container">
-        <h2>{{versusPic1.title}} Vs. {{versusPic2.title}}</h2>
-        <span><img src={{versusPic1.image}}></img></span>
-        <span><img src={{versusPic2.image}}></img></span>
-      </div>
+    <div id="pic-about-container">
+      <h2>About</h2>
+      <p>Jugular, a simple app using AngularJS and Ruby on Rails.</p>
+    </div>
 
-
-      <div id="pic-best-container">
-        <h2>Best Jugs</h2>
-        <ol>
-          <li ng-repeat="pic in pics | filter:10">
-            <img src={{pic.image}}></img>
-            <p>{{pic.title}}</p>
-          </li>
-        </ol>
-      </div>
-
-
-      <div id="pic-upload-container">
-        <div>
-          <h2>Upload</h2>
-        </div>
-      </div>
-
-      <div>
-        <div id="pic-view-container" ng-show="selectedPic">
-          <img src={{selectedPic.image}}></img>
-          <h2>{{selectedPic.title}}</h2>
-          <p>{{selectedPic.score}}</p>
-        </div>
-
-        <div id="pic-edit-container">
-          <form name="picEditForm">
-            <table>
-            <tr><td></td></tr>
-            <tr><td>Title: <input type="text" name="title" value={{title}} ng-model="selectedPic.title" ng-minlength="3" ng-maxlength="64" ng-required=true></td></tr>
-            <tr><td>Score: <input type="number" name="score" value={{score}} ng-model="selectedPic.score" ng-required=true></td></tr>
-            </table>
-            <span class="error" ng-show="picEditForm.title.$error.required">Required!</span>
-            <span class="error" ng-show="picEditForm.title.$error.minlength">Too short!</span>
-            <span class="error" ng-show="picEditForm.title.$error.maxlength">Too long!</span>
-            <span class="error" ng-show="picEditForm.score.$error.required">Required!</span>
-          </form>
-        </div>
-      </div>
-
-
-      <div id="pic-list-container">
-        <div id="find-input-container">
-          Find <input ng-model="searchText">
-        </div>
-        <table>
-          <tr ng-repeat="pic in pics | filter:searchText | orderBy:listOrder:true" ng-class="isSelected(pic)">
-            <td><p ng-click="selectPic(pic)" >{{pic.title}}</p></td>
-            <td>{{pic.score}}</td>
-          </tr>
+    <div id="pic-versus-container">
+      <div ng-show="!versusPic1AndVersusPic2NotNull()">
+        <h2>Versus</h2>
+        <p>Select two pics to compare from the list below.<p>
+        <span><div class="pic-versus-img" ng-show="versusPic1"><img src={{versusPic1.image}}></img></div></span>
+        <span><div class="pic-versus-img" ng-show="versusPic2"><img src={{versusPic2.image}}></img></div></span>
+        <table class="table-striped table-hover table-bordered table-condensed">
+          <thead>
+            <th>Title</th>
+            <th>Score</th>
+          </thead>
+          <tbody>
+            <tr class="table" ng-repeat="pic in pics | filter:searchText | orderBy:listOrder:true" ng-class="isSelected(pic)" ng-hide="pic == versusPic1">
+              <td><p ng-click="selectVersusPic(pic)" >{{pic.title}}</p></td>
+              <td>{{pic.score}}</td>
+            </tr>
+          </tbody>
         </table>
       </div>
-
-
-
-
-
-
+      <div ng-show="versusPic1AndVersusPic2NotNull()">
+        <h2>{{versusPic1.title}} Vs. {{versusPic2.title}}</h2>
+        <span><div class="pic-versus-img" ng-show="versusPic1"><img src={{versusPic1.image}}></img></div></span>
+        <span><div class="pic-versus-img" ng-show="versusPic2"><img src={{versusPic2.image}}></img></div></span>
+      </div>
     </div>
+
+
+    <div id="pic-best-container">
+      <h2>Best</h2>
+      <ol>
+        <li ng-repeat="pic in pics | filter:10">
+          <img src={{pic.image}}></img>
+          <p>{{pic.title}}</p>
+        </li>
+      </ol>
+    </div>
+
+
+    <div id="pic-upload-container">
+      <h2>Upload</h2>
+      <form name="picUploadForm">
+        <p>Title: <input ng-model="uploadPicTitle"></p>
+        <p>Score: <input ng-model="uploadPicScore"></p>
+        <button>Select Image</button>
+        <button>Upload</button>
+      </form>
+    </div>
+
+    <div>
+      <div id="pic-view-container" ng-show="selectedPic">
+        <h3>{{selectedPic.title}}</h3>
+        <h3>{{selectedPic.score}}</h3>
+        <div id="pic-view-img">
+          <img src={{selectedPic.image}}></img>
+        </div>
+      </div>
+      <div style="clear: both" />
+
+      <div id="pic-edit-container">
+        <h2>Edit</h2>
+        <form name="picEditForm">
+          <table class="table table-hover table-bordered table-condensed">
+          <tr><td>Title:</td><td><input type="text" name="title" value={{title}} ng-model="selectedPic.title" ng-minlength="3" ng-maxlength="64" ng-required=true></td></tr>
+          <tr><td>Score:</td><td><input type="number" name="score" value={{score}} ng-model="selectedPic.score" ng-required=true></td></tr>
+          </table>
+          <span class="error" ng-show="picEditForm.title.$error.required">Required!</span>
+          <span class="error" ng-show="picEditForm.title.$error.minlength">Too short!</span>
+          <span class="error" ng-show="picEditForm.title.$error.maxlength">Too long!</span>
+          <span class="error" ng-show="picEditForm.score.$error.required">Required!</span>
+          <tr>
+            <td><button class="button" ng-click="save(selectedPic)">Save</button></td>
+            <td><button class="button" ng-click="cancel(selectedPic)">Cancel</button></td>
+          </tr>
+        </form>
+      </div>
+    </div>
+
+
+    <div id="pic-list-container">
+      <h2>Find</h2>
+      <div id="find-input-container">
+        <input ng-model="searchText">
+      </div>
+      <div id="pic-list-table">
+        <table class="table table-striped table-hover table-bordered table-condensed">
+          <thead>
+            <th ng-click="sortByTitle()">Title</th>
+            <th ng-click="sortByScore()">Score</th>
+          </thead>
+          <tbody>
+            <tr class="table" ng-repeat="pic in pics | filter:searchText | orderBy:listOrder:listDescending" ng-class="isSelected(pic)">
+              <td><p ng-click="selectPic(pic)" >{{pic.title}}</p></td>
+              <td>{{pic.score}}</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
   </div>
 </body>
 

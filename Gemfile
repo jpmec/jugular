@@ -10,6 +10,12 @@ gem 'carrierwave'
 gem 'carrierwave-sequel'
 gem 'jquery-rails'
 
+gem 'inherited_resources'
+gem 'bootstrap-sass'
+gem 'quiet_assets'
+gem 'restful_json'
+gem 'haml'
+
 # To use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'
 
