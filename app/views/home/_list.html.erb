@@ -1,0 +1,20 @@
+<div id="pic-list-container">
+  <h2>Find</h2>
+  <div id="find-input-container">
+    <input ng-model="searchText">
+  </div>
+  <div id="pic-list-table">
+    <table class="table table-striped table-hover table-bordered table-condensed">
+      <thead>
+        <th ng-click="sortByTitle()">Title</th>
+        <th ng-click="sortByScore()">Score</th>
+      </thead>
+      <tbody>
+        <tr class="table" ng-repeat="pic in pics | filter:searchText | orderBy:listOrder:listDescending" ng-class="isSelected(pic)">
+          <td><p ng-click="selectPic(pic)" >{{pic.title}}</p></td>
+          <td>{{pic.score}}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

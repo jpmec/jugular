@@ -1,0 +1,9 @@
+<div id="pic-best-container">
+  <h2>Best</h2>
+  <ol>
+    <li ng-repeat="pic in pics | filter:10">
+      <img src={{pic.image}}></img>
+      <p>{{pic.title}}</p>
+    </li>
+  </ol>
+</div>

@@ -1,0 +1,26 @@
+<div id="pic-edit-container">
+  <h2>Edit</h2>
+  <form name="picEditForm">
+    <table class="table table-hover table-bordered table-condensed">
+    <tr><td>Image:</td><td><img src={{selectedPic.image}} height=3em></img></td></tr>
+    <tr><td>Title:</td><td><input type="text" name="title" value={{title}} ng-model="selectedPic.title" ng-minlength="3" ng-maxlength="64" ng-required=true></td></tr>
+    <tr><td>Score:</td><td><input type="number" name="score" value={{score}} ng-model="selectedPic.score" ng-required=true></td></tr>
+    </table>
+    <span class="error" ng-show="picEditForm.title.$error.required">Required!</span>
+    <span class="error" ng-show="picEditForm.title.$error.minlength">Too short!</span>
+    <span class="error" ng-show="picEditForm.title.$error.maxlength">Too long!</span>
+    <span class="error" ng-show="picEditForm.score.$error.required">Required!</span>
+  </form>
+
+  <div class="navbar navbar-fixed-bottom">
+    <div class="navbar-inner">
+      <div class="container-fluid">
+        <ul class="nav">
+          <li><button class="btn" ng-click="saveEdit(selectedPic)">Save</button></li>
+          <li><button class="btn" ng-click="cancelEdit(selectedPic)">Cancel</button></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+</div>

@@ -52,12 +52,15 @@
 
   $scope.showEdit = () ->
     $scope.hideSections()
-    $('#pic-view-container').slideDown()
     $('#pic-edit-container').slideDown()
 
   $scope.selectPic = (pic) ->
     $scope.selectedPic = pic
     $scope.showEdit()
+
+  $scope.clearVersus = () ->
+    $scope.versusPic1 = null
+    $scope.versusPic2 = null
 
   $scope.selectVersusPic = (pic) ->
     if (!$scope.versusPic1)
@@ -74,11 +77,11 @@
   $scope.isSelected = (pic) ->
     'active' if $scope.selectedPic == pic
 
-  $scope.save = (pic) ->
+  $scope.saveEdit = (pic) ->
     alert('save')
 
-  $scope.cancel = (pic) ->
-    alert('cancel')
+  $scope.cancelEdit = (pic) ->
+    $scope.showView(pic)
 
   $scope.sortByTitle = () ->
     if ($scope.listOrder == 'title')

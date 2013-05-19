@@ -1,0 +1,22 @@
+<div id="pic-upload-container">
+  <h2>Upload</h2>
+  <form name="picUploadForm">
+    <table class="table table-hover">
+    <tr><td>Image</td><td><button class="btn" ng-click="selectUploadImage()">Select Image ...</button></td></tr>
+    <tr><td>Title</td><td><input ng-model="uploadPicTitle"></td></tr>
+    <tr><td>Score</td><td><input ng-model="uploadPicScore"></td></tr>
+    </table>
+  </form>
+
+  <div class="navbar navbar-fixed-bottom">
+    <div class="navbar-inner">
+      <div class="container-fluid">
+        <ul class="nav pull-right">
+          <li></li>
+          <li><button class="btn" ng-click="clearUpload()">Clear</button></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+</div>
